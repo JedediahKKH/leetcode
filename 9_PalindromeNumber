@@ -1,0 +1,36 @@
+class Solution {
+    public boolean isPalindrome(int x) {
+        // negative numbers cannot be palindromes
+        // even length numbers cannot be palindromes
+        // determining if the n and length-n digit is equivalent
+        // the moment any pair returns false, it is not palindrome
+        // no need to store anything
+        String string = Integer.toString(x);
+        
+        /*
+        if((string.length()%2)==0 || x<0){
+            return false;
+        }// handles negative numbers and even-length numbers
+        // maybe handle even length numbers with mod (log base 10 )
+        */
+        
+        if(x<0){
+            return false;
+        }
+        int left= 0;
+        int right= string.length()-1;
+        // Evaluate the digits here; only need to compare up to the midpoint of the number
+        for(int i=0;i<Math.floor(string.length());i++){
+            if(string.charAt(left)!=string.charAt(right)){
+                return false;
+            }
+            left++;
+            right--;
+        }
+
+
+
+        return true;
+        // how to solve without turning into a string?
+    }
+}
