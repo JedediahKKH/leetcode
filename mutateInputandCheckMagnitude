@@ -1,0 +1,34 @@
+class Solution {
+
+    public static int getMagnitude(int number) {
+            if (number == 0) return 0; // Handle zero explicitly to avoid -Infinity
+                return (int) Math.floor(Math.log10(Math.abs(number)));
+    }
+
+    public boolean isPalindrome(int x) {
+        // negative numbers cannot be palindromes
+        if(x<0){
+            return false;
+        }
+        int divisor= (int) Math.pow(10,getMagnitude(x));
+
+        while (divisor >=1){
+            int leftDigit = x/divisor;  //Gets Most Significant Digit
+            int rightDigit = x % 10;    //Gets Least Significant Digit
+
+            //terminate early if digits do not match
+            if (leftDigit != rightDigit){
+                return false;
+            }
+
+            // Else mutate the input and proceed to next iteration
+            x=x % divisor;    // Chops off first digit
+            x= x/10;        // Chops off last digit
+
+            divisor=divisor/100;
+        }
+
+        return true;
+        // how to solve without turning into a string?
+    }
+}
