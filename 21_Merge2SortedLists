@@ -1,0 +1,43 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        ListNode answer= new ListNode();
+        ListNode pointer= answer;
+        if(list1==null){
+            return list2;
+        }
+        if(list2==null){
+            return list1;
+        }
+        if(list1==null && list2==null){
+            return null;
+        }
+        while(list1 != null && list2 != null){
+            if(list1.val <=list2.val){
+                // Pop element of the linked-list and proceed to next pointer
+                pointer.next=list1;
+                list1 = list1.next;
+            }else{
+                pointer.next=list2;
+                list2 = list2.next;
+            }
+            // Proceed to next pointer in the linked list
+            pointer= pointer.next;
+            
+        }
+        // linkedlist may not be of equal length, if one list runs out, just append the remainder of the other list to the end of the asnwer
+        pointer.next= (list1!=null)? list1:list2;
+        
+        // end of function; return the final merged linkedlist object
+        return answer.next;
+    }
+}
