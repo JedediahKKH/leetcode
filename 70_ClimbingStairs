@@ -1,0 +1,25 @@
+class Solution {
+    public int climbStairs(int n) {
+        // Base case: stairs of 2 height, 1+1 or 2
+        if(n<=2){
+            return n;
+        }
+        int prev1= 2;// ways to reach the top from n-1 step
+        int prev2 = 1; // way to reach the top from the n-2 step
+        int current=0;
+
+        // Starts at i=3 as base case handled above in early termination
+        /*
+        For the 3rd step until the last step, keep a running total of the number of possible ways to reach the n-1 and n-2 steps
+
+        This works because you will have needed to sum the number of ways to even reach the n-1 and n-2 step. Therefore, you must add the prev1 and prev2 values to obtain the total number of wasy to arrive at the current step
+        */ 
+        for(int i =3; i<=n;i++){
+            current = prev1 +prev2;
+            prev2= prev1;
+            prev1=current;
+        }
+
+        return prev1;
+    }
+}
